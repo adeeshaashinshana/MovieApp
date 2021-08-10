@@ -7,7 +7,7 @@ import './LandingPage.css';
 
 const LandingPage = () => {
   return (
-    <div className="App">
+    <div className="LandingPageContainer">
       <TopBar/>
       <CardHolder/>
     </div>
