@@ -1,0 +1,16 @@
+.MovieCardContainer {
+  text-align: center;
+  border-radius: 10px;
+  margin: 1 1 1 1;
+  padding: 30px 15px 30px 15px;
+  box-shadow: 3px 3px 3px rgba(243, 159, 50, 0.096);
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.116);
+  transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 0.1);
+  border: 0px;
+}
+
+.MovieCardContainer:hover {
+  box-shadow: 3px 3px 3px rgba(243, 159, 50, 0.253);
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.178);
+  transform: translate(0, -0.7px);
+}
