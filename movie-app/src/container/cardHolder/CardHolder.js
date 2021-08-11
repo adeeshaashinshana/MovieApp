@@ -6,7 +6,7 @@ import './CardHolder.css';
 const CardHolder = (props) => {
 
     const renderMovieInfoCard = props.movies.map((movie, i) => (
-        <Col lg="5" key={i}>
+        <Col sm={true} key={i} className="d-flex justify-content-center renderCardContainer">
             <MovieCard
                 poster={movie.Poster}
                 title={movie.Title}
@@ -25,9 +25,7 @@ const CardHolder = (props) => {
         <div className="CardHolderContainer">
             <Container>
                 <Row className="d-flex justify-content-center">
-                    {/* <Col lg="2"></Col> */}
                     {renderMovieInfoCard}
-                    {/* <Col lg="2"></Col> */}
                 </Row>
             </Container>
         </div>

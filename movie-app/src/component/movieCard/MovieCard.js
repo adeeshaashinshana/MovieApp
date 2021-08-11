@@ -13,13 +13,13 @@ const MovieCard = ({
                 <img src={poster} alt='movie' className="cardImage" />
             </div>
             <div className="cardTitleContainer">
-                <h4 className="cardTitle">{title}</h4>
+                <h5 className="cardTitle">{title}</h5>
             </div>
             <div className="cardFooterContainer">
                 <hr className="cardHorizontalLine" />
                 <div className="d-flex justify-content-between footerItem">
-                    <p className="movieYear">{year}</p>
-                    <Button block className="infoButton" onClick={null}>
+                    <h5 className="movieYear">{year}</h5>
+                    <Button variant="primary" size="sm" className="infoButton" onClick={null}>
                         DETAILS
                     </Button>
                 </div>

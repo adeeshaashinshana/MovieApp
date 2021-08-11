@@ -6,7 +6,7 @@ import './TopBar.css';
 const TopBar = (props) => {
     return (
         <div className="TopBarContainer">
-            <Navbar bg="light" expand="sm">
+            <Navbar bg="light" expand="sm" sticky="top">
                 <Navbar.Brand href="#">OMDB Search</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="responsive-navbar-nav">
