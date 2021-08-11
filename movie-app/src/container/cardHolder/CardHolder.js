@@ -1,22 +1,21 @@
 import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import MovieCard from '../../component/movieCard/MovieCard';
-import movieInfo from '../../api/movieInfo';
 import './CardHolder.css';
 
-const CardHolder = () => {
+const CardHolder = (props) => {
 
-    const renderMovieInfoCard = movieInfo.map((details, i) => (
+    const renderMovieInfoCard = props.movies.map((movie, i) => (
         <Col lg="5" key={i}>
             <MovieCard
-                poster={details.poster}
-                title={details.title}
-                year={details.year}
-                plot={details.plot}
-                actors={details.actors}
-                ratings={details.ratings.map(details => {
-                    return <Col> {details} </Col>;
-                })}
+                poster={movie.Poster}
+                title={movie.Title}
+                year={movie.Year}
+                plot={movie.Plot}
+                actors={movie.Actors}
+                // ratings={movie.Ratings.map(detail => {
+                //     return <li> {detail.Source}</li>;
+                // })}
                 onBuyClicked={() => null}
             />
         </Col>
@@ -25,7 +24,7 @@ const CardHolder = () => {
     return (
         <div className="CardHolderContainer">
             <Container>
-                <Row>
+                <Row className="d-flex justify-content-center">
                     {/* <Col lg="2"></Col> */}
                     {renderMovieInfoCard}
                     {/* <Col lg="2"></Col> */}
