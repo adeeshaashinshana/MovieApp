@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from "react";
 import { Form, FormControl, Button } from 'react-bootstrap';
+
 import './SearchBar.css';
 
-const SearchBar = () => {
+const SearchBar = (props) => {
+
+    const [searchText, setSearchText] = useState('');
+
     return (
         <div className="SearchBarContainer">
             <Form className="d-flex">
@@ -11,8 +15,9 @@ const SearchBar = () => {
                     placeholder="Search"
                     className="mr-2"
                     aria-label="Search"
+                    onChange={event => setSearchText(event.target.value)}
                 />
-                <Button variant="outline-success">Search</Button>
+                <Button variant="outline-success" onClick={() => props.setSearchValue(searchText)}>Search</Button>
             </Form>
         </div>
     );
