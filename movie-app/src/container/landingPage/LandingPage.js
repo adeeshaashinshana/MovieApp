@@ -10,6 +10,7 @@ const LandingPage = () => {
 
   const [searchValue, setSearchValue] = useState('');
   const [movies, setMovies] = useState([]);
+  const [findError, setFindError] = useState(false);
 
   const getMovieRequest = async (searchValue) => {
     const API_URL = `http://www.omdbapi.com/?s=${searchValue}&apikey=${API_KEY}`;
@@ -22,25 +23,41 @@ const LandingPage = () => {
       const responseJson = await response.json();
       if (responseJson.Search) {
         setMovies(responseJson.Search);
+        setFindError(false);
       } else {
-        console.log('fuck');
-        // return (
-        //   <AlertBox alert="Movie not Found!" />
-        // )
+        setFindError(true);
       }
     }
   };
 
-useEffect(() => {
-  getMovieRequest(searchValue);
-}, [searchValue]);
+  useEffect(() => {
+    if (searchValue !== '') {
+      getMovieRequest(searchValue);
+    }
+  }, [searchValue]);
 
-return (
-  <div className="LandingPageContainer">
-    <TopBar searchValue={searchValue} setSearchValue={setSearchValue} />
-    <CardHolder movies={movies} />
-  </div>
-);
+  return (
+    <div className="LandingPageContainer">
+      <TopBar searchValue={searchValue} setSearchValue={setSearchValue} />
+
+      {searchValue === '' && movies.length === 0 &&
+        <AlertBox
+          alert="Welcome!"
+          bgColor="rgba(192, 228, 241, 0.877)"
+          borderColor="rgba(87, 132, 255, 0.877)"
+          textColor="black" />
+      }
+
+      {findError === true ?
+        (<AlertBox
+          alert="Movie not Found!"
+          bgColor="rgba(247, 151, 151, 0.61)"
+          borderColor="rgba(219, 48, 48, 0.877)"
+          textColor="red" />) :
+        (<CardHolder movies={movies} />)
+      }
+    </div>
+  );
 }
 
 export default LandingPage;

@@ -1,16 +1,19 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Row } from 'react-bootstrap';
 import './AlertBox.css';
 
-const AlertBox = (alert) => {
+const AlertBox = (props) => {
     return (
-        <Card bg="Primary" className="mb-2">
-            <Card.Body>
-                <Card.Text>
-                    {alert}
-                </Card.Text>
-            </Card.Body>
-        </Card>
+        <Row className="d-flex justify-content-center">
+            <div className="AlertBoxContainer" style={{
+                backgroundColor: props.bgColor,
+                borderColor: props.borderColor,
+                color: props.textColor
+            }}
+            >
+                {props.alert}
+            </div>
+        </Row>
     );
 }
 
