@@ -5,40 +5,74 @@ import './SearchBar.css';
 
 const SearchBar = () => {
 
-    
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [query, setQuery] = useState('tt3896198');
-  const [activateModal, setActivateModal] = useState(false);
-  const [detail, setShowDetail] = useState(false);
-  const [detailRequest, setDetailRequest] = useState(false);
 
-  useEffect(() => {
+    const [data, setData] = useState(null);
+    const [error, setError] = useState(null);
+    //   const [loading, setLoading] = useState(false);
+    // const [query, setQuery] = useState('tt3896198');
+    const [query, setQuery] = useState('cat');
+    //   const [activateModal, setActivateModal] = useState(false);
+    //   const [showDetail, setShowDetail] = useState(false);
+    //   const [detailRequest, setDetailRequest] = useState(false);
 
-    setLoading(true);
-    setError(null);
-    setData(null);
+    var filmData;
 
-    fetch(`http://www.omdbapi.com/?i=${query}&apikey=${API_KEY}`)
-      .then(resp => resp)
-      .then(resp => resp.json())
-      .then(response => {
-        if (response.Response === 'False') {
-          setError(response.Error);
-        }
-        else {
-          setData(response.Search);
-        }
+    //   useEffect(() => {
 
-        setLoading(false);
-      })
-      .catch(({ message }) => {
-        setError(message);
-        setLoading(false);
-      })
+    // setLoading(true);
+    // setError(null);
+    // setData(null);
 
-  }, [query]);
+    // fetch(`http://www.omdbapi.com/?i=${query}&apikey=${API_KEY}`)
+    //   .then(resp => resp)
+    //   .then(resp => resp.json())
+    //   .then(response => {
+    //     if (response.Response === 'False') {
+    //       setError(response.Error);
+    //     }
+    //     else {
+    //       setData(response.Search);
+    //     }
+
+    //     setLoading(false);
+    //   })
+    //   .catch(({ message }) => {
+    //     setError(message);
+    //     setLoading(false);
+    //   })
+
+    //   }, [query]);
+
+    function onButtonClick(event) {
+        event.preventDefault();
+        console.log("search text :", query);
+
+        // setLoading(true);
+        setError(null);
+        setData(null);
+
+        fetch(`http://www.omdbapi.com/?s=${query}&apikey=${API_KEY}`)
+            .then(resp => resp)
+            .then(resp => resp.json())
+            .then(response => {
+                if (response.Response === 'False') {
+                    setError(response.Error);
+                    console.log("err1>>>", error);
+                }
+                else {
+                    setData(response.Search);
+                    console.log("data>>>", data);
+                    filmData = data;
+                }
+
+                // setLoading(false);
+            })
+            .catch(({ message }) => {
+                setError(message);
+                console.log("err2>>>", error);
+                // setLoading(false);
+            })
+    }
 
     return (
         <div className="SearchBarContainer">
@@ -48,8 +82,9 @@ const SearchBar = () => {
                     placeholder="Search"
                     className="mr-2"
                     aria-label="Search"
+                    onChange={e => setQuery(e.target.value)}
                 />
-                <Button variant="outline-success">Search</Button>
+                <Button variant="outline-success" onClick={onButtonClick}>Search</Button>
             </Form>
         </div>
     );
